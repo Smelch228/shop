@@ -1,24 +1,24 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 import AppRoutes from './AppRoutes';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
-import {Layout} from './components/Layout';
+
 import './custom.css';
+import {MDBContainer} from "mdb-react-ui-kit";
+import Nav from './components/Nav.js'
+import Carousel from './components/Carousel.js'
 
-export default class App extends Component {
-    static displayName = App.name;
+function App() {
+    return (
+        <div className="App">
+            <Nav/>
+            <Carousel/>
+            <MDBContainer>
 
-    render() {
-        return (
-            <Layout>
-                <Routes>
-                    {AppRoutes.map((route, index) => {
-                        const {element, requireAuth, ...rest} = route;
-                        return <Route key={index} {...rest}
-                                      element={requireAuth ? <AuthorizeRoute {...rest} element={element}/> : element}/>;
-                    })}
-                </Routes>
-            </Layout>
-        );
-    }
+            </MDBContainer>
+        </div>
+    );
 }
+
+export default App;
+
