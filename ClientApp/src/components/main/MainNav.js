@@ -16,13 +16,13 @@ import {
     MDBCollapse,
 } from 'mdb-react-ui-kit';
 
-export default function Navbar() {
+export default function App() {
     const [showBasic, setShowBasic] = useState(false);
 
     return (
-        <MDBNavbar expand='lg' light bgColor='light' fixed='top'>
+        <MDBNavbar expand='lg' dark className='mt-5 mb-3 shadow p-2' style={{backgroundColor: '#607D8B'}}>
             <MDBContainer fluid>
-                <MDBNavbarBrand href='#'>Magazik</MDBNavbarBrand>
+                <MDBNavbarBrand tag="span">Categories</MDBNavbarBrand>
 
                 <MDBNavbarToggler
                     aria-controls='navbarSupportedContent'
@@ -34,43 +34,31 @@ export default function Navbar() {
                 </MDBNavbarToggler>
 
                 <MDBCollapse navbar show={showBasic}>
-                    <MDBNavbarNav className=' mb-2 mb-lg-0 mr-auto'>
+                    <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
                         <MDBNavbarItem>
                             <MDBNavbarLink active aria-current='page' href='#'>
-                                Home
+                                All
                             </MDBNavbarLink>
                         </MDBNavbarItem>
+
                         <MDBNavbarItem>
-                            <MDBNavbarLink href='#'>About us</MDBNavbarLink>
+                            <MDBNavbarLink href='#'>Category 1</MDBNavbarLink>
                         </MDBNavbarItem>
 
                         <MDBNavbarItem>
-                            <MDBDropdown>
-                                <MDBDropdownToggle tag='a' className='nav-link' role='button'>
-                                    Dropdown
-                                </MDBDropdownToggle>
-                                <MDBDropdownMenu>
-                                    <MDBDropdownItem link>Action</MDBDropdownItem>
-                                    <MDBDropdownItem link>Another action</MDBDropdownItem>
-                                    <MDBDropdownItem link>Something else here</MDBDropdownItem>
-                                </MDBDropdownMenu>
-                            </MDBDropdown>
+                            <MDBNavbarLink href='#'>Category 2</MDBNavbarLink>
                         </MDBNavbarItem>
 
                         <MDBNavbarItem>
-
+                            <MDBNavbarLink href='#'>Category 3</MDBNavbarLink>
                         </MDBNavbarItem>
                     </MDBNavbarNav>
 
-
-                    <div className='d-inline-flex align-items-center'>
-                        <MDBBtn outline className="me-2" style={{height: "50%"}}>Login</MDBBtn>
-                        <MDBBtn style={{height: "50%"}}>Register</MDBBtn>
-                    </div>
+                    <form className='d-flex input-group w-auto'>
+                        <input type='search' className='form-control' placeholder='Search' aria-label='Search' />
+                    </form>
                 </MDBCollapse>
-
             </MDBContainer>
-
         </MDBNavbar>
     );
 }
