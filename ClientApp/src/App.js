@@ -7,6 +7,8 @@ import './custom.css';
 import {MDBContainer} from "mdb-react-ui-kit";
 import Nav from './components/Nav.js'
 import Carousel from './components/Carousel.js'
+import MainNav from './components/main/MainNav.js'
+import MainLayout from './components/main/MainLayout.js'
 
 function App() {
     return (
@@ -14,6 +16,8 @@ function App() {
             <Nav/>
             <Carousel/>
             <MDBContainer>
+                <MainNav/>
+                <MainLayout/>
 
             </MDBContainer>
         </div>
