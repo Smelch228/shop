@@ -16,11 +16,12 @@ import {
     MDBCollapse,
 } from 'mdb-react-ui-kit';
 
+
 export default function App() {
     const [showBasic, setShowBasic] = useState(false);
 
     return (
-        <MDBNavbar expand='lg' dark className='mt-5 mb-3 shadow p-2' style={{backgroundColor: '#607D8B'}}>
+        <MDBNavbar expand='lg' dark className='mt-3 mb-3 shadow p-2' style={{backgroundColor: '#607D8B'}}>
             <MDBContainer fluid>
                 <MDBNavbarBrand tag="span">Categories</MDBNavbarBrand>
 

@@ -16,14 +16,18 @@ import {
     MDBCollapse,
 } from 'mdb-react-ui-kit';
 
+import { Link } from 'react-router-dom';
+
 export default function Navbar() {
     const [showBasic, setShowBasic] = useState(false);
 
     return (
-        <MDBNavbar expand='lg' light bgColor='light' fixed='top'>
+        <MDBNavbar expand='lg' light bgColor='light'>
             <MDBContainer fluid>
-                <MDBNavbarBrand href='#'>Magazik</MDBNavbarBrand>
-
+                <Link to='/'>
+                    <MDBNavbarBrand>Market</MDBNavbarBrand>
+                </Link>
+                
                 <MDBNavbarToggler
                     aria-controls='navbarSupportedContent'
                     aria-expanded='false'
@@ -36,9 +40,11 @@ export default function Navbar() {
                 <MDBCollapse navbar show={showBasic}>
                     <MDBNavbarNav className=' mb-2 mb-lg-0 mr-auto'>
                         <MDBNavbarItem>
-                            <MDBNavbarLink active aria-current='page' href='#'>
+                            <Link to='/'>
+                            <MDBNavbarLink active aria-current='page'>
                                 Home
                             </MDBNavbarLink>
+                            </Link>
                         </MDBNavbarItem>
                         <MDBNavbarItem>
                             <MDBNavbarLink href='#'>About us</MDBNavbarLink>
@@ -64,8 +70,13 @@ export default function Navbar() {
 
 
                     <div className='d-inline-flex align-items-center'>
-                        <MDBBtn outline className="me-2" style={{height: "50%"}}>Login</MDBBtn>
-                        <MDBBtn style={{height: "50%"}}>Register</MDBBtn>
+                        <Link to='/login'>
+                            <MDBBtn outline className="me-2" style={{height: "50%"}}>Login</MDBBtn>
+                        </Link>
+                        
+                        <Link to='/register'>
+                            <MDBBtn style={{height: "50%"}}>Register</MDBBtn>
+                        </Link>
                     </div>
                 </MDBCollapse>
 

@@ -6,12 +6,22 @@ import {
     MDBCardTitle,
     MDBCardText,
     MDBRow,
-    MDBCol
+    MDBCol,
+    MDBContainer
 } from 'mdb-react-ui-kit';
+import MainNav from './MainNav.js';
+import MainCarousel from './Carousel.js';
+import MainPagination from './MainPagination.js';
+
+
 
 export default function App() {
     return (
-        <MDBRow className='row-cols-1 row-cols-md-4 row-cols-sm-2 g-4'>
+        <>
+        <MainCarousel styles/>
+        <MDBContainer>
+            <MainNav />
+            <MDBRow className='row-cols-1 row-cols-md-4 row-cols-sm-2 g-4'>
             <MDBCol>
                 <MDBCard>
                     <MDBCardImage
@@ -205,5 +215,8 @@ export default function App() {
                 </MDBCard>
             </MDBCol>
         </MDBRow>
+        <MainPagination/>
+        </MDBContainer> 
+        </>
     );
 }

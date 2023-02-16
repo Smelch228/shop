@@ -1,6 +1,7 @@
 /* Provide sufficient contrast against white background */
 body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
+  background-color: #eee;
 }
 
 a {
