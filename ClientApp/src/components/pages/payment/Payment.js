@@ -82,21 +82,13 @@ export default function App() {
               />
 
               <MDBRow>
-                <MDBCol>
+                <MDBCol md="6">
                   <MDBInput
                     label="Name on card"
                     id="form6"
                     type="text"
                     wrapperClass="mb-4"
                     className="text-uppercase"
-                  />
-                </MDBCol>
-                <MDBCol>
-                  <MDBInput
-                    label="Name on card"
-                    id="form7"
-                    type="text"
-                    wrapperClass="mb-4"
                   />
                 </MDBCol>
               </MDBRow>

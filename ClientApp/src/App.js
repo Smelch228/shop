@@ -14,21 +14,21 @@ import LoginLayout from './components/pages/auth/LoginLayout.js'
 import RegisterLayout from './components/pages/auth/RegisterLayout.js'
 import Payment from './components/pages/payment/Payment.js'
 import ShoppingCart from './components/pages/shopping-cart/ShoppingCart.js'
+import DeliveryForm from './components/pages/payment/Delivery.js'
 
 function App() {
     return (
-        <div className="App">
+        <div className="App d-flex justify-content-between">
             <Nav/>
             <Routes>
                 <Route path="/" element={<MainLayout/>}/>
                 <Route path="/login" element={<LoginLayout/>}/>
                 <Route path="/register" element={<RegisterLayout/>}/>
                 <Route path="/payment" element={<Payment/>}/>
-                <Route path="shopping-cart" element={<ShoppingCart/>}/>
-
-
+                <Route path="/shopping-cart" element={<ShoppingCart/>}/>
+                <Route path="/delivery-form" element={<DeliveryForm/>}/>
             </Routes>
-            <Footer className="mt-3"/>
+            <Footer className=""/>
 
         </div>
     );
