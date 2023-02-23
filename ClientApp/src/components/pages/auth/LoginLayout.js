@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 
 function App() {
   return (
-    <MDBContainer fluid className="p-3 my-5 d-flex a" styles={{}}>
+    <MDBContainer fluid className="p-3 my-5 d-flex d-flex justify-content-center align-items-center" styles={{}}>
 
       <MDBRow>
 
