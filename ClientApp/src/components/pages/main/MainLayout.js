@@ -16,8 +16,8 @@ export default function App() {
             <MDBContainer>
                 <MainNav />
                 <MDBRow className='row-cols-1 row-cols-md-4 row-cols-sm-2 g-4'>
-                    {[1, 2, 3, 4, 5,'fd',4,4,4,4,4,4,4,4,4,4].map((item, index) => {
-                        return <ItemCard key={index}></ItemCard>
+                    {[1, 2, 3, 4, 5, 'fd', 4, 4, 4, 4, 4, 4, 4, 4, 4, 4].map((item, index) => {
+                        return <ItemCard key={index} cardId={index}></ItemCard>
                     })}
                 </MDBRow>
                 <MainPagination />
