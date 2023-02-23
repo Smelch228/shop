@@ -44,6 +44,11 @@ export default function Navbar() {
                         <MDBNavbarItem>
                             <MDBNavbarLink href='#'>Promo</MDBNavbarLink>
                         </MDBNavbarItem>
+                        <MDBNavbarItem>
+                        <Link to='/feedbacks'>
+                            <MDBNavbarLink>Feedbacks</MDBNavbarLink>
+                        </Link>
+                        </MDBNavbarItem>
 
                         <MDBNavbarItem>
 
