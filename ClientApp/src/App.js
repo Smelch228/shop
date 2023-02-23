@@ -9,11 +9,12 @@ import RegisterLayout from './components/pages/auth/RegisterLayout.js'
 import Payment from './components/pages/payment/Payment.js'
 import ShoppingCart from './components/pages/shopping-cart/ShoppingCart.js'
 import DeliveryForm from './components/pages/payment/Delivery.js'
+import CreateCard from './components/pages/card/CardForm.js'    
 import { ProfilePage } from './components/pages/profile';
 
 function App() {
     return (
-        <div className="App d-flex justify-content-center">
+        <div className="App d-flex justify-content-between">
             <Nav />
             <Routes>
                 <Route path="/" element={<MainLayout />} />
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/delivery-form" element={<DeliveryForm />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/card/card:id" element={<ProfilePage />} />
+                <Route path="/create-card" element={<CreateCard />} />
 
             </Routes>
             <Footer className="" />
@@ -41,3 +43,5 @@ export default App;
 // форму оплаты, +
 // карточку продукта,
 // форма для доставки товара, +
+
+//
