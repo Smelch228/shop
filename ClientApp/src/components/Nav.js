@@ -9,13 +9,8 @@ import {
     MDBNavbarItem,
     MDBNavbarLink,
     MDBBtn,
-    MDBDropdown,
-    MDBDropdownToggle,
-    MDBDropdownMenu,
-    MDBDropdownItem,
     MDBCollapse,
 } from 'mdb-react-ui-kit';
-
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
@@ -27,7 +22,7 @@ export default function Navbar() {
                 <Link to='/'>
                     <MDBNavbarBrand>Market</MDBNavbarBrand>
                 </Link>
-                
+
                 <MDBNavbarToggler
                     aria-controls='navbarSupportedContent'
                     aria-expanded='false'
@@ -41,26 +36,13 @@ export default function Navbar() {
                     <MDBNavbarNav className=' mb-2 mb-lg-0 mr-auto'>
                         <MDBNavbarItem>
                             <Link to='/'>
-                            <MDBNavbarLink active aria-current='page'>
-                                Home
-                            </MDBNavbarLink>
+                                <MDBNavbarLink active aria-current='page'>
+                                    Home
+                                </MDBNavbarLink>
                             </Link>
                         </MDBNavbarItem>
                         <MDBNavbarItem>
-                            <MDBNavbarLink href='#'>About us</MDBNavbarLink>
-                        </MDBNavbarItem>
-
-                        <MDBNavbarItem>
-                            <MDBDropdown>
-                                <MDBDropdownToggle tag='a' className='nav-link' role='button'>
-                                    Dropdown
-                                </MDBDropdownToggle>
-                                <MDBDropdownMenu>
-                                    <MDBDropdownItem link>Action</MDBDropdownItem>
-                                    <MDBDropdownItem link>Another action</MDBDropdownItem>
-                                    <MDBDropdownItem link>Something else here</MDBDropdownItem>
-                                </MDBDropdownMenu>
-                            </MDBDropdown>
+                            <MDBNavbarLink href='#'>Promo</MDBNavbarLink>
                         </MDBNavbarItem>
 
                         <MDBNavbarItem>
@@ -70,12 +52,18 @@ export default function Navbar() {
 
 
                     <div className='d-inline-flex align-items-center'>
-                        <Link to='/login'>
-                            <MDBBtn outline className="me-2" style={{height: "50%"}}>Login</MDBBtn>
+                        <Link to='/profile'>
+                            <MDBIcon far icon="user-circle me-2" size='2x' />
                         </Link>
-                        
+                        <Link to='/shopping-cart'>
+                            <MDBIcon fas icon="shopping-cart me-2" size='2x' />
+                        </Link>
+                        <Link to='/login'>
+                            <MDBBtn outline className="me-2" style={{ height: "50%" }}>Login</MDBBtn>
+                        </Link>
+
                         <Link to='/register'>
-                            <MDBBtn style={{height: "50%"}}>Register</MDBBtn>
+                            <MDBBtn style={{ height: "50%" }}>Register</MDBBtn>
                         </Link>
                     </div>
                 </MDBCollapse>

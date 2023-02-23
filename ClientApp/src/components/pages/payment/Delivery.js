@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCol, MDBContainer, MDBIcon, MDBInput, MDBRow, MDBTypography } from 'mdb-react-ui-kit';
+import { Link } from 'react-router-dom';
 
 export default function Image() {
     return (
@@ -57,7 +58,12 @@ export default function Image() {
                                     <MDBInput label='Zip' type='text' className="mb-4" size="lg" />
 
                                     <div className="d-flex justify-content-end pt-3">
-                                        <MDBBtn size="lg" className="ms-2" style={{backgroundColor: 'hsl(210, 100%, 50%)'}}>Place order</MDBBtn>
+                                        <Link to='/shopping-cart'>
+                                        <MDBBtn size="lg" className="ms-2" outline >Back to cart</MDBBtn>
+                                        </Link>
+                                        <Link to='/payment'>
+                                        <MDBBtn size="lg" className="ms-2" style={{backgroundColor: 'hsl(210, 100%, 50%)'}}>Next step</MDBBtn>
+                                        </Link>
                                     </div>
 
                                 </MDBCardBody>
