@@ -9,7 +9,7 @@ import {
 export default function Carousel() {
     return (
             <MDBRow>
-                <MDBCol size='md' className='d-none d-lg-inline-block d-md-inline-block mb-1'>
+                <MDBCol size='md' className='d-none d-lg-inline-block d-md-inline-block mb-1' style={{padding: "0"}}>
                     <MDBCarousel showIndicators showControls className=''>
                         <MDBCarouselItem
                             className='w-100 d-block'
