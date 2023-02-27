@@ -11,7 +11,8 @@ import ShoppingCart from './components/pages/shopping-cart/ShoppingCart.js'
 import DeliveryForm from './components/pages/payment/Delivery.js'
 import CreateCard from './components/pages/card/CardForm.js'    
 import { ProfilePage } from './components/pages/profile';
-
+import CardDescription from './components/description/[cardId]';
+import FeedbackPage from './components/pages/feedback';
 function App() {
     return (
         <div className="App d-flex justify-content-between">
@@ -26,7 +27,8 @@ function App() {
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/card/card:id" element={<ProfilePage />} />
                 <Route path="/create-card" element={<CreateCard />} />
-
+                <Route path="/card/:cardId" element={<CardDescription />} />
+                <Route path="/feedbacks" element={<FeedbackPage />} />
             </Routes>
             <Footer className="" />
 
@@ -41,7 +43,7 @@ export default App;
 // Добавить профиль, +
 // корзину,+
 // форму оплаты, +
-// карточку продукта,
+// карточку продукта,+
 // форма для доставки товара, +
 
 //
