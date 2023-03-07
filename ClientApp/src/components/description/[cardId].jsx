@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon, MDBBtn, } from 'mdb-react-ui-kit';
 import { useParams } from 'react-router-dom';
+
 export default function CardDescription() {
     const { cardId } = useParams();
+    const [product, setProduct] = useState({});
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        axios.
+            get(`api/product/${cardId}`)
+            .then(data => {
+                console.log(data);
+                setProduct(data.data);
+                console.log(product);
+            })
+    }, [])
     return (
         <section className="vh-100" style={{ backgroundColor: '#f4f5f7' }}>
             <MDBContainer className="py-5 h-200">
@@ -12,10 +26,10 @@ export default function CardDescription() {
                             <MDBRow className="g-0">
                                 <MDBCol md="4" className="gradient-custom text-center"
                                 >
-                                    <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/12.webp"
+                                    <MDBCardImage src={ product.image }
                                         alt="Avatar" className="my-5" style={{ width: '120px' }} fluid />
-                                    <MDBTypography tag="h5">Notebook</MDBTypography>
-                                    <MDBCardText style={{ color: 'ligthgreen' }}>In stock</MDBCardText>
+                                    <MDBTypography tag="h5">{ product.name }</MDBTypography>
+                                    <MDBCardText style={{ color: 'ligthgreen' }}>In stock { product.inStock }</MDBCardText>
                                 </MDBCol>
                                 <MDBCol md="8">
                                     <MDBCardBody className="p-4">
@@ -29,7 +43,7 @@ export default function CardDescription() {
                                                 <MDBTypography tag="h6">Phone</MDBTypography>
                                                 <MDBCardText className="text-muted">123 456 789</MDBCardText>
                                             </MDBCol> */}
-                                                <MDBCardText className="text-muted">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque iusto expedita fugiat doloribus nulla. Commodi unde voluptate, cumque impedit quod voluptatem quos sint quam, similique ut amet corporis quas ullam.</MDBCardText>
+                                            <MDBCardText className="text-muted">{ product.description }</MDBCardText>
                                         </MDBRow>
                                         <hr className="mt-0 mb-4" />
                                         <MDBRow className="pt-1">

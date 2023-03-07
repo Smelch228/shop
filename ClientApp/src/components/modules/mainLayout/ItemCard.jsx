@@ -9,25 +9,14 @@ import {
     MDBRipple,
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
+import setCategory from "/Projects/ShopWebApp/ClientApp/src/utilities/Categories";
+import { useNavigate } from 'react-router-dom';
 
-const setCategory = id => {
-    switch (id) {
-        case 0:
-            return "PC";
-        case 1:
-            return "Laptop";
-        case 2:
-            return "Smartphone";
-        case 3:
-            return "TV";
-        case 4:
-            return "Console";
 
-    }
-}
 
 const ItemCard = (props) => {
-    const { name, price, category, image } = props;
+    const { id, name, price, category, image } = props;
+    const navigate = useNavigate();
 
     return (
         <MDBCol md="8" lg="6" xl="4">
@@ -45,13 +34,14 @@ const ItemCard = (props) => {
                             borderTopLeftRadius: "15px",
                             borderTopRightRadius: "15px",
                             width: "600px",
-                            height: "350px"
+                            height: "350px",
+                            cursor: "pointer"
                         }}
                         alt={name + " image"}
+                        onClick={() => {
+                            navigate(`/card/${id}`);
+                        }}
                     />
-                    <a href="#!">
-                        <div className="mask"></div>
-                    </a>
                 </MDBRipple>
                 <MDBCardBody className="pb-0">
                     <div className="d-flex justify-content-between">
@@ -89,9 +79,9 @@ const ItemCard = (props) => {
                 <hr className="my-0" />
                 <MDBCardBody className="pb-0">
                     <div className="d-flex justify-content-between align-items-center pb-2 mb-4">
-                        <Link to="huy" className="text-dark fw-bold">
-                            <MDBBtn color="primary" outline>Read more</MDBBtn>
-                        </Link>
+                            <MDBBtn color="primary" outline onClick={() => {
+                                navigate(`/card/${id}`);
+                            }}>Read more</MDBBtn>
                         <MDBBtn color="primary">Buy now</MDBBtn>
                     </div>
                 </MDBCardBody>

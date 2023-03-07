@@ -10,7 +10,7 @@ import MainPagination from './MainPagination.js';
 import ProductCard from '../../modules/mainLayout/ItemCard.jsx';
 
 
-export default function App() {
+export default function Home() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -33,6 +33,7 @@ export default function App() {
                         console.log(product);
                         return (
                             <ProductCard key={product.id}
+                                id= { product.id }
                                 name={product.name}
                                 price={product.price}
                                 category={product.category}
