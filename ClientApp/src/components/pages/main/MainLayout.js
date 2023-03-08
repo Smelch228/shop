@@ -7,7 +7,7 @@ import PaginatedItems from './Paginate'
 export default function Home() {
     return (
         <>
-            <MainCarousel styles />
+            {/*<MainCarousel className='p-0 m-0 fill' />*/}
             <PaginatedItems />
         </>
     );
