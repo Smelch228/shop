@@ -13,6 +13,7 @@ import CreateCard from './components/pages/card/CardForm.js'
 import { ProfilePage } from './components/pages/profile';
 import CardDescription from './components/description/[cardId]';
 import FeedbackPage from './components/pages/feedback';
+
 function App() {
     return (
         <div className="App d-flex justify-content-between">
