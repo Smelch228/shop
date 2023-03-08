@@ -13,6 +13,7 @@ export default function PaginatedItems() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         axios.
             get('api/product')
             .then(data => {
