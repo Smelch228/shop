@@ -9,10 +9,8 @@ import {
     MDBRipple,
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
-import setCategory from "../../../utilities/Categories";
-import { useNavigate } from 'react-router-dom';
-
-
+import setCategory from "../../../utilities/categories";
+import { useNavigate } from "react-router-dom";
 
 const ItemCard = (props) => {
     const { id, name, price, category, image } = props;
@@ -35,7 +33,7 @@ const ItemCard = (props) => {
                             borderTopRightRadius: "15px",
                             width: "600px",
                             height: "350px",
-                            cursor: "pointer"
+                            cursor: "pointer",
                         }}
                         alt={name + " image"}
                         onClick={() => {
@@ -51,7 +49,9 @@ const ItemCard = (props) => {
                                     {name}
                                 </a>
                             </p>
-                            <p className="small text-muted">{setCategory(category)}</p>
+                            <p className="small text-muted">
+                                {setCategory(category)}
+                            </p>
                         </div>
                         <div>
                             <div className="d-flex flex-row justify-content-end mt-1 mb-4 text-danger">
@@ -79,15 +79,21 @@ const ItemCard = (props) => {
                 <hr className="my-0" />
                 <MDBCardBody className="pb-0">
                     <div className="d-flex justify-content-between align-items-center pb-2 mb-4">
-                            <MDBBtn color="primary" outline onClick={() => {
+                        <MDBBtn
+                            color="primary"
+                            outline
+                            onClick={() => {
                                 navigate(`/card/${id}`);
-                            }}>Read more</MDBBtn>
+                            }}
+                        >
+                            Read more
+                        </MDBBtn>
                         <MDBBtn color="primary">Buy now</MDBBtn>
                     </div>
                 </MDBCardBody>
             </MDBCard>
-        </MDBCol >
+        </MDBCol>
     );
-}
+};
 
 export default ItemCard;

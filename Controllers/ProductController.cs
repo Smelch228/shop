@@ -2,6 +2,8 @@
 using ShopWebApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace ShopWebApp.Controllers
 {
@@ -29,6 +31,7 @@ namespace ShopWebApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "True")]
         public async Task Post(Product result)
         {
             await _productRepo.CreateAsync(result);

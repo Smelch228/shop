@@ -5,9 +5,9 @@ namespace ShopWebApp.Interfaces
 {
     public interface IUserRepo
     {
-        Task<ActionResult<string>> CreateAsync(UserDTO user);
+        Task<ActionResult<string>> CreateAsync(RegisterDTO user);
 
-        User Login(UserDTO user);
+        User Login(LoginDTO user);
 
         string CreateToken(User user);
 

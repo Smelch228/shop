@@ -21,7 +21,7 @@ namespace ShopWebApp.Repositories
             _configuration = configuration;
         }
 
-        public async Task<ActionResult<string>> CreateAsync(UserDTO request)
+        public async Task<ActionResult<string>> CreateAsync(RegisterDTO request)
         {
             User user = new User();
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
@@ -29,16 +29,18 @@ namespace ShopWebApp.Repositories
             user.Email = request.Email;
             user.PasswordHash = Convert.ToBase64String(passwordHash);
             user.PasswordSalt = Convert.ToBase64String(passwordSalt);
+            user.FirstName = request.FirstName;
+            user.LastName = request.LastName;
 
             _context.Users.Add(user);
             user = null;
             GC.Collect();
 
             await _context.SaveChangesAsync();
-            return "It's ok";
+            return "User have been created!";
         }
 
-        public User Login(UserDTO request)
+        public User Login(LoginDTO request)
         {
             var user = _context.Users.Where(u => u.Email == request.Email).FirstOrDefault();
 
@@ -65,9 +67,9 @@ namespace ShopWebApp.Repositories
             return users;
         }
 
-        public Task<User> GetByIdAsync(int id)
+        public async Task<User> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Users.FindAsync(id);
         }
 
         public Task UpdateAsync(int id)

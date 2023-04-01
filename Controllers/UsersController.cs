@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ShopWebApp.Interfaces;
 using ShopWebApp.Models;
@@ -17,13 +18,21 @@ namespace ShopWebApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "True")]
         public async Task<List<User>> GetUsersAsync()
         {
             return await _userRepo.GetAllAsync();
         }
 
+        [HttpGet("{id}")]
+        [Authorize]
+        public async Task<User> GetUserById(int id)
+        {
+            return await _userRepo.GetByIdAsync(id);
+        }
+
         [HttpPost("register")]
-        public async Task<ActionResult<string>> RegisterUser(UserDTO request)
+        public async Task<ActionResult<string>> RegisterUser(RegisterDTO request)
         {
             try
             {
@@ -36,7 +45,7 @@ namespace ShopWebApp.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(UserDTO request)
+        public async Task<ActionResult<string>> Login(LoginDTO request)
         {
             var user = _userRepo.Login(request);
 
