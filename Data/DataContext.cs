@@ -7,6 +7,15 @@ namespace ShopWebApp.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+        }
+
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<User> Users { get; set; }
     }
 }

@@ -14,8 +14,8 @@ export default function PaginatedItems() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        axios.
-            get('api/product')
+        axios
+            .get('api/product')
             .then(data => {
                 console.log(data);
                 setProducts(data.data);

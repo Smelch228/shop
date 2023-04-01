@@ -9,7 +9,7 @@ import {
     MDBRipple,
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
-import setCategory from "/Projects/ShopWebApp/ClientApp/src/utilities/Categories";
+import setCategory from "../../../utilities/Categories";
 import { useNavigate } from 'react-router-dom';
 
 
