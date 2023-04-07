@@ -24,5 +24,7 @@ namespace ShopWebApp.Models
 
         public DateTime BirthDate { get; set; }
 
+        public virtual ICollection<Order> Orders { get; set; }
+
     }
 }

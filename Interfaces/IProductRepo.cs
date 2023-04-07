@@ -1,10 +1,12 @@
-﻿using ShopWebApp.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using ShopWebApp.Models;
+using ShopWebApp.Models.DTO;
 
 namespace ShopWebApp.Interfaces
 {
     public interface IProductRepo
     {
-        Task CreateAsync(Product product);
+        int Create(ProductDTO product);
 
         Task UpdateAsync(Product product);
 

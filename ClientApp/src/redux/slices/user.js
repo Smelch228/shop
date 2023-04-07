@@ -5,13 +5,15 @@ import jwt_decode from "jwt-decode";
 let token = localStorage.getItem("token");
 let id = null,
     role = null,
-    isAuth = false;
+    isAuth = false,
+    email = null;
 
 if (token !== null) {
     const decoded = jwt_decode(token);
     id = decoded.id;
     role = JSON.parse(decoded.role.toLowerCase());
     isAuth = true;
+    email = decoded.email;
 }
 
 const initialState = {
@@ -19,7 +21,7 @@ const initialState = {
     token: token,
     id: id,
     role: role,
-    email: null,
+    email: email,
     firstName: null,
     lastName: null,
     phone: null,
@@ -56,7 +58,7 @@ const userSlice = createSlice({
             state.email = action.payload.email;
             state.firstName = action.payload.firstName;
             state.lastName = action.payload.lastName;
-            state.phone = action.payload.phone;
+            state.phone = action.payload.phoneNumber;
         },
         [getProfile.rejected]: (state, action) => {
             state.loading = false;

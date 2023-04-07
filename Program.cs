@@ -7,13 +7,18 @@ using Swashbuckle.AspNetCore.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddTransient<IProductRepo, ProductRepo>();
 builder.Services.AddTransient<IUserRepo, UserRepo>();
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.WriteIndented = true;
+}); ;
 
 builder.Services.AddSwaggerGen(options =>
 {

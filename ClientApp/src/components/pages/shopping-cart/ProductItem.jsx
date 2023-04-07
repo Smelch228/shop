@@ -38,6 +38,10 @@ export const ProductItem = () => {
                                             fluid
                                             src={item.image}
                                             alt={`${item.name} card image`}
+                                            style={{
+                                                minHeight: "150px",
+                                                maxHeight: "150px",
+                                            }}
                                         />
                                     </MDBCol>
                                     <MDBCol md="3" lg="3" xl="3">
@@ -101,7 +105,9 @@ export const ProductItem = () => {
                                             tag="h5"
                                             className="mb-0"
                                         >
-                                            {`$${item.price}`}
+                                            {`$${parseFloat(item.price).toFixed(
+                                                2
+                                            )}`}
                                         </MDBTypography>
                                     </MDBCol>
                                     <MDBCol

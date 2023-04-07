@@ -15,15 +15,18 @@ import {
     MDBBtn,
     MDBFile,
 } from "mdb-react-ui-kit";
+import { useNavigate } from "react-router-dom";
 
 const CardCreateForm = () => {
+    const navigate = useNavigate();
+
     const [product, setProduct] = useState({
         name: "",
         category: 0,
         description: "",
         price: 0.0,
         inStock: true,
-        image: "h.jpeg",
+        image: null,
     });
 
     const token = localStorage.getItem("token");
@@ -46,13 +49,21 @@ const CardCreateForm = () => {
         console.log(product);
     };
 
+    const onFileChange = (e) => {
+        setProduct({ ...product, image: e.target.files[0] });
+    };
+
     async function sendProductData() {
         await axios
             .post("/api/product", product, {
-                headers: { Authorization: `Bearer ${token}` },
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "multipart/form-data",
+                },
             })
             .then((response) => {
                 console.log(response.data);
+                navigate(`/card/${response.data}`);
             })
             .catch((error) => {
                 console.error(error);
@@ -137,7 +148,10 @@ const CardCreateForm = () => {
                                     className="mb-3"
                                 >
                                     <Form.Label>Image</Form.Label>
-                                    <Form.Control type="file" />
+                                    <Form.Control
+                                        type="file"
+                                        onChange={onFileChange}
+                                    />
                                 </Form.Group>
 
                                 <hr className="my-4" />

@@ -38,13 +38,30 @@ export default function ProductCards() {
                             <MDBCardBody>
                                 <MDBCardBody className="p-4 d-flex flex-row justify-content-between align-items-center">
                                     <h3 className="fw-bold">Total:</h3>
-                                    <h3>{`$${total}`}</h3>
+                                    <h3>{`$${parseFloat(total).toFixed(
+                                        2
+                                    )}`}</h3>
                                 </MDBCardBody>
-                                <Link to="/delivery-form">
-                                    <MDBBtn className="ms-3" block size="lg">
+                                {total > 0 ? (
+                                    <Link to="/delivery-form">
+                                        <MDBBtn
+                                            className="ms-3"
+                                            block
+                                            size="lg"
+                                        >
+                                            Proceed to checkout
+                                        </MDBBtn>
+                                    </Link>
+                                ) : (
+                                    <MDBBtn
+                                        className="ms-3"
+                                        block
+                                        size="lg"
+                                        disabled
+                                    >
                                         Proceed to checkout
                                     </MDBBtn>
-                                </Link>
+                                )}
                             </MDBCardBody>
                         </MDBCard>
                     </MDBCol>
