@@ -1,48 +1,38 @@
-﻿import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import {
-    MDBRow,
-    MDBContainer
-} from 'mdb-react-ui-kit';
-import MainNav from './MainNav.js';
-import ProductCard from '../../modules/mainLayout/ItemCard.jsx';
-import ReactPaginate from 'react-paginate';
-
+﻿import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { MDBRow, MDBContainer } from "mdb-react-ui-kit";
+import MainNav from "./MainNav.js";
+import ProductCard from "../../modules/mainLayout/ItemCard.jsx";
+import ReactPaginate from "react-paginate";
 
 export default function PaginatedItems() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        axios
-            .get('api/product')
-            .then(data => {
-                console.log(data);
-                setProducts(data.data);
-                console.log(products);
-            })
-    }, [])
+        axios.get("api/product").then((response) => {
+            setProducts(response.data);
+            console.log(products);
+        });
+    }, []);
 
     const Items = ({ currentItems }) => {
         return (
             <>
-                {   
-                    currentItems &&
-                    currentItems.map((product => {
-                        console.log(product);
-                        return (
-                            <ProductCard key={product.id}
-                                id={product.id}
-                                name={product.name}
-                                price={product.price}
-                                category={product.category}
-                                image={product.image}
-                            />
-                        );
-                    }))}
+                {currentItems &&
+                    currentItems.map((product) => (
+                        <ProductCard
+                            key={product.id}
+                            id={product.id}
+                            name={product.name}
+                            price={product.price}
+                            category={product.category}
+                            image={product.image}
+                        />
+                    ))}
             </>
-            );
-    }
+        );
+    };
 
     function PaginatedItems() {
         // Here we use item offsets; we could also use page offsets
@@ -67,13 +57,12 @@ export default function PaginatedItems() {
         };
 
         return (
-                <MDBContainer>
-                    <MainNav />
-                    <MDBRow className='row-cols-1 row-cols-md-4 row-cols-sm-2 g-4'>
-                        <Items currentItems={currentItems} />
-                                    
+            <MDBContainer>
+                <MainNav />
+                <MDBRow className="row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
+                    <Items currentItems={currentItems} />
                 </MDBRow>
-                <div className='d-flex list-unstyled justify-content-center align-items-center my-4 p-0'>
+                <div className="d-flex list-unstyled justify-content-center align-items-center my-4 p-0">
                     <ReactPaginate
                         breakLabel="..."
                         nextLabel="next >"
@@ -87,15 +76,14 @@ export default function PaginatedItems() {
                         previousLinkClassName="page-link"
                         nextClassName="page-item"
                         nextLinkClassName="page-link"
-                        breakLabel="..."
                         breakClassName="page-item"
                         breakLinkClassName="page-link"
                         containerClassName="pagination"
                         activeClassName="active"
                         renderOnZeroPageCount={null}
                     />
-                </div>          
-                </MDBContainer>
+                </div>
+            </MDBContainer>
         );
     }
 

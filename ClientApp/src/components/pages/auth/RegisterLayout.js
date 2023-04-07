@@ -12,7 +12,8 @@ import {
     MDBIcon,
     MDBCheckbox,
 } from "mdb-react-ui-kit";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { userRegister } from "../../../redux/slices/actions/authActions";
 
 function Register() {
     const [user, setUser] = useState({
@@ -22,22 +23,17 @@ function Register() {
         password: "",
     });
 
-    async function sendUserData() {
-        await axios
-            .post("api/users/register", user)
-            .then((response) => {
-                console.log(response.data);
-                alert("Success!");
-            })
-            .catch((error) => {
-                console.error(error);
-                alert("User with given email already exists!");
-            });
-    }
+    const { error } = useSelector((state) => state.user);
+    const [redirect, setRedirect] = useState(false);
+
+    const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        sendUserData();
+        dispatch(userRegister(user));
+        if (error === null) {
+            setRedirect(true);
+        }
     };
 
     const handleInput = (e) => {
@@ -50,6 +46,7 @@ function Register() {
             fluid
             className="d-flex justify-content-center align-items-center"
         >
+            {redirect && <Navigate replace to="/login"></Navigate>}
             <form onSubmit={handleSubmit}>
                 <MDBRow>
                     <MDBCol
@@ -60,6 +57,8 @@ function Register() {
                         <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                             Sign up
                         </p>
+
+                        {error && <p>*{error}</p>}
 
                         <div className="d-flex flex-row align-items-center mb-4 ">
                             <MDBIcon fas icon="user me-3" size="lg" />

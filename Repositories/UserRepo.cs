@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using ShopWebApp.Data;
 using ShopWebApp.Interfaces;
 using ShopWebApp.Models;
+using ShopWebApp.Models.DTO;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;

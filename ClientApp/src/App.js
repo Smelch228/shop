@@ -1,18 +1,18 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import './custom.css';
-import Nav from './components/Nav.js'
-import MainLayout from './components/pages/main/MainLayout.js'
-import Footer from './components/Footer.js'
-import LoginLayout from './components/pages/auth/LoginLayout.js'
-import RegisterLayout from './components/pages/auth/RegisterLayout.js'
-import Payment from './components/pages/payment/Payment.js'
-import ShoppingCart from './components/pages/shopping-cart/ShoppingCart.js'
-import DeliveryForm from './components/pages/payment/Delivery.js'
-import CreateCard from './components/pages/card/CardForm.js'    
-import { ProfilePage } from './components/pages/profile';
-import CardDescription from './components/description/[cardId]';
-import FeedbackPage from './components/pages/feedback';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import "./custom.css";
+import Nav from "./components/Nav.js";
+import MainLayout from "./components/pages/main/MainLayout.js";
+import Footer from "./components/Footer.js";
+import LoginLayout from "./components/pages/auth/LoginLayout.js";
+import RegisterLayout from "./components/pages/auth/RegisterLayout.js";
+import Payment from "./components/pages/payment/Payment.js";
+import ShoppingCart from "./components/pages/shopping-cart/Index.jsx";
+import DeliveryForm from "./components/pages/payment/Delivery.js";
+import CreateCard from "./components/pages/card/CreateCard.js";
+import { ProfilePage } from "./components/pages/profile";
+import CardDescription from "./components/description/[cardId]";
+import FeedbackPage from "./components/pages/feedback";
 
 function App() {
     return (
@@ -31,7 +31,6 @@ function App() {
                 <Route path="/feedbacks" element={<FeedbackPage />} />
             </Routes>
             <Footer className="" />
-
         </div>
     );
 }

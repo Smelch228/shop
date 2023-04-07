@@ -10,36 +10,17 @@ import {
     MDBCheckbox,
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
-import jwt_decode from "jwt-decode";
-import axios from "axios";
-import authService from "../../../utilities/auth.service";
-import { useDispatch } from "react-redux";
-import { loginSuccess } from "../../../redux/slices/user";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin } from "../../../redux/slices/actions/authActions";
 
 function Login() {
-    let decoded;
-
-    const [redirect, setRedirect] = useState(false);
+    const { token } = useSelector((state) => state.user);
     const [user, setUser] = useState({
         email: "",
         password: "",
     });
 
     const dispatch = useDispatch();
-
-    async function sendUserData() {
-        const response = await authService.login(user);
-        decoded = jwt_decode(response);
-        console.log(decoded);
-        dispatch(
-            loginSuccess({
-                token: response,
-                id: decoded.id,
-                role: decoded.role,
-            })
-        );
-        setRedirect(true);
-    }
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -48,11 +29,12 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        sendUserData();
+        dispatch(userLogin(user));
     };
 
     return (
         <form onSubmit={handleSubmit}>
+            {token !== null && <Navigate replace to="/profile"></Navigate>}
             <MDBContainer
                 fluid
                 className="p-3 my-5 d-flex d-flex justify-content-center align-items-center"
@@ -115,8 +97,6 @@ function Login() {
                         </Link>
                     </MDBCol>
                 </MDBRow>
-
-                {redirect && <Navigate replace={true} to="/" />}
             </MDBContainer>
         </form>
     );
