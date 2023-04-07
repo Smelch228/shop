@@ -1,4 +1,4 @@
-﻿namespace ShopWebApp.Models
+﻿namespace ShopWebApp.Models.DTO
 {
     public class LoginDTO
     {

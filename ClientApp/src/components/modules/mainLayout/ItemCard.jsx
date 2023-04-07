@@ -8,13 +8,25 @@ import {
     MDBBtn,
     MDBRipple,
 } from "mdb-react-ui-kit";
-import { Link } from "react-router-dom";
 import setCategory from "../../../utilities/categories";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../redux/slices/cart";
+import Alert from "react-bootstrap/Alert";
 
 const ItemCard = (props) => {
     const { id, name, price, category, image } = props;
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const addProductToCart = () => {
+        dispatch(addToCart({ id, name, price, category, image }));
+        return (
+            <>
+                <Alert variant="success">Added to cart.</Alert>
+            </>
+        );
+    };
 
     return (
         <MDBCol md="8" lg="6" xl="4">
@@ -88,7 +100,9 @@ const ItemCard = (props) => {
                         >
                             Read more
                         </MDBBtn>
-                        <MDBBtn color="primary">Buy now</MDBBtn>
+                        <MDBBtn color="primary" onClick={addProductToCart}>
+                            Add to cart
+                        </MDBBtn>
                     </div>
                 </MDBCardBody>
             </MDBCard>

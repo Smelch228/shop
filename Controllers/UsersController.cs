@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ShopWebApp.Interfaces;
 using ShopWebApp.Models;
+using ShopWebApp.Models.DTO;
 
 namespace ShopWebApp.Controllers
 {

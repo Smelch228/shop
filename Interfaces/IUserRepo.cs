@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShopWebApp.Models;
+using ShopWebApp.Models.DTO;
 
 namespace ShopWebApp.Interfaces
 {
