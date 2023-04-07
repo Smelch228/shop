@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using ShopWebApp.Models.DTO;
 
 namespace ShopWebApp.Controllers
 {
@@ -32,9 +33,11 @@ namespace ShopWebApp.Controllers
 
         [HttpPost]
         [Authorize(Roles = "True")]
-        public async Task Post(Product result)
+        public async Task<ActionResult<int>> Post([FromForm] ProductDTO response)
         {
-            await _productRepo.CreateAsync(result);
+            int id = _productRepo.Create(response);
+
+            return Ok(id);
         }
     }
 }

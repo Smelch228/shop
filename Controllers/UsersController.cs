@@ -27,9 +27,12 @@ namespace ShopWebApp.Controllers
 
         [HttpGet("{id}")]
         [Authorize]
-        public async Task<User> GetUserById(int id)
+        public async Task<ActionResult<ProfileDTO>> GetUserById(int id)
         {
-            return await _userRepo.GetByIdAsync(id);
+            var user = await _userRepo.GetByIdAsync(id);
+            var profile = new ProfileDTO() { Email = user.Email, FirstName = user.FirstName, LastName = user.LastName, PhoneNumber = user.PhoneNumber };
+
+            return Ok(profile);
         }
 
         [HttpPost("register")]

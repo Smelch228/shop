@@ -106,6 +106,7 @@ namespace ShopWebApp.Repositories
             {
                 new Claim("role", user.Role.ToString()),
                 new Claim("id", user.UserId.ToString()),
+                new Claim("email", user.Email),
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
