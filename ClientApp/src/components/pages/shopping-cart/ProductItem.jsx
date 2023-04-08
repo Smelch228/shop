@@ -19,10 +19,13 @@ import {
     removeItem,
 } from "../../../redux/slices/cart";
 import setCategory from "../../../utilities/categories";
+import { useEffect } from "react";
 
 export const ProductItem = () => {
     const dispatch = useDispatch();
     const { cart } = useSelector((state) => state.cart);
+
+    useEffect(() => {});
 
     return (
         <>

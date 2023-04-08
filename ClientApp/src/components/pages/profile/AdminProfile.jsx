@@ -18,6 +18,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../../redux/slices/actions/authActions";
 import { Navigate } from "react-router-dom";
+import { Orders } from "./Orders";
+import { UsersModal } from "./UsersModal";
 
 export const AdminProfile = () => {
     const navigate = useNavigate();
@@ -156,14 +158,6 @@ export const AdminProfile = () => {
                                                 </MDBCol>
                                                 <MDBCol sm="9">
                                                     <MDBBtn
-                                                        outline
-                                                        rounded
-                                                        className="me-2"
-                                                        color="dark"
-                                                    >
-                                                        Product list
-                                                    </MDBBtn>
-                                                    <MDBBtn
                                                         rounded
                                                         color="dark"
                                                         className="me-2"
@@ -186,7 +180,7 @@ export const AdminProfile = () => {
                                                 </MDBCol>
                                                 <MDBCol sm="9">
                                                     <MDBCardText className="text-muted">
-                                                        {email}
+                                                        <UsersModal />
                                                     </MDBCardText>
                                                 </MDBCol>
                                             </MDBRow>
@@ -220,7 +214,11 @@ export const AdminProfile = () => {
                                             </MDBRow>
                                         </MDBCardBody>
                                     </MDBCard>
+                                    {/* <Orders /> */}
                                 </MDBCol>
+                                {/* <MDBCol lg="8">
+                                    <Orders />
+                                </MDBCol> */}
                             </MDBRow>
                         </MDBContainer>
                     )}

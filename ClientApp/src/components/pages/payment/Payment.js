@@ -13,10 +13,36 @@ import {
     MDBListGroup,
     MDBListGroupItem,
 } from "mdb-react-ui-kit";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart } from "../../../redux/slices/cart";
+import { clearOrderRequest } from "../../../redux/slices/order";
+import axios from "axios";
 
 export default function App() {
+    const dispatch = useDispatch();
+
     const { total } = useSelector((state) => state.cart);
+    const order = useSelector((state) => state.order);
+    const token = localStorage.getItem("token");
+    console.log(order);
+
+    const createOrder = async () => {
+        await axios
+            .post("/api/orders/create", order, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                dispatch(clearCart());
+                dispatch(clearOrderRequest());
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
 
     return (
         <MDBContainer className="py-5">
@@ -56,22 +82,6 @@ export default function App() {
                                 label="Phone"
                                 id="form5"
                                 type="tel"
-                            />
-
-                            <hr className="my-4" />
-
-                            <MDBCheckbox
-                                name="flexCheck"
-                                value=""
-                                id="checkoutForm1"
-                                label="Shipping address is the same as my billing address"
-                            />
-                            <MDBCheckbox
-                                name="flexCheck"
-                                value=""
-                                id="checkoutForm2"
-                                label=" Save this information for next time"
-                                defaultChecked
                             />
 
                             <hr className="my-4" />
@@ -123,7 +133,7 @@ export default function App() {
                                 </MDBCol>
                             </MDBRow>
 
-                            <MDBBtn size="lg" block>
+                            <MDBBtn size="lg" block onClick={createOrder}>
                                 Continue to checkout
                             </MDBBtn>
                         </MDBCardBody>

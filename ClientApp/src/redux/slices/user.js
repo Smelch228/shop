@@ -10,7 +10,7 @@ let id = null,
 
 if (token !== null) {
     const decoded = jwt_decode(token);
-    id = decoded.id;
+    id = parseInt(decoded.id);
     role = JSON.parse(decoded.role.toLowerCase());
     isAuth = true;
     email = decoded.email;
@@ -76,7 +76,7 @@ const userSlice = createSlice({
             state.isAuth = true;
             state.token = action.payload;
             const decoded = jwt_decode(state.token);
-            state.id = decoded.id;
+            state.id = parseInt(decoded.id);
             state.role = JSON.parse(decoded.role.toLowerCase());
             state.success = true;
         },
