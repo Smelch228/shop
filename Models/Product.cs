@@ -19,5 +19,7 @@ namespace ShopWebApp.Models
         public bool InStock { get; set; }
 
         public string Image { get; set; }
+
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

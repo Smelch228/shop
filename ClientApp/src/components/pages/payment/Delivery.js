@@ -11,12 +11,42 @@ import {
     MDBRow,
     MDBTypography,
 } from "mdb-react-ui-kit";
-import { Link, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { setUserOrderData, setOrderRequest } from "../../../redux/slices/order";
+import { useState } from "react";
 
 export default function DeliveryForm() {
     const { cart } = useSelector((state) => state.cart);
-    const { isAuth } = useSelector((state) => state.user);
+    const { isAuth, email, id } = useSelector((state) => state.user);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [form, setForm] = useState({
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+        address: "",
+        state: "",
+        city: "",
+        zip: "",
+    });
+
+    const handleInput = (e) => {
+        const { name, value } = e.target;
+        setForm({ ...form, [name]: value });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(setOrderRequest(form));
+        navigate("/payment");
+    };
+
+    useEffect(() => {
+        dispatch(setUserOrderData({ cart, email, id }));
+    }, []);
 
     if (cart.length !== 0 && isAuth) {
         return (
@@ -92,72 +122,94 @@ export default function DeliveryForm() {
                                             Delivery Info
                                         </MDBTypography>
 
-                                        <MDBRow>
-                                            <MDBCol md="6" className="mb-4">
-                                                <MDBInput
-                                                    label="First name"
-                                                    type="text"
-                                                    size="lg"
-                                                />
-                                            </MDBCol>
-                                            <MDBCol md="6" className="mb-4">
-                                                <MDBInput
-                                                    label="Last name"
-                                                    type="text"
-                                                    size="lg"
-                                                />
-                                            </MDBCol>
-                                        </MDBRow>
+                                        <form onSubmit={handleSubmit}>
+                                            <MDBRow>
+                                                <MDBCol md="6" className="mb-4">
+                                                    <MDBInput
+                                                        label="First name"
+                                                        type="text"
+                                                        size="lg"
+                                                        name="firstName"
+                                                        value={form.firstName}
+                                                        onChange={handleInput}
+                                                    />
+                                                </MDBCol>
+                                                <MDBCol md="6" className="mb-4">
+                                                    <MDBInput
+                                                        label="Last name"
+                                                        type="text"
+                                                        size="lg"
+                                                        name="lastName"
+                                                        value={form.lastName}
+                                                        onChange={handleInput}
+                                                    />
+                                                </MDBCol>
+                                            </MDBRow>
 
-                                        <MDBInput
-                                            label="Address"
-                                            type="text"
-                                            className="mb-4"
-                                            size="lg"
-                                        />
+                                            <MDBInput
+                                                label="Address"
+                                                type="text"
+                                                className="mb-4"
+                                                size="lg"
+                                                name="address"
+                                                value={form.address}
+                                                onChange={handleInput}
+                                            />
 
-                                        <MDBRow>
-                                            <MDBCol md="6" className="mb-4">
-                                                <MDBInput
-                                                    label="State"
-                                                    type="text"
-                                                    size="lg"
-                                                />
-                                            </MDBCol>
-                                            <MDBCol md="6" className="mb-4">
-                                                <MDBInput
-                                                    label="City"
-                                                    type="text"
-                                                    size="lg"
-                                                />
-                                            </MDBCol>
-                                        </MDBRow>
+                                            <MDBRow>
+                                                <MDBCol md="6" className="mb-4">
+                                                    <MDBInput
+                                                        label="State"
+                                                        type="text"
+                                                        size="lg"
+                                                        name="state"
+                                                        value={form.state}
+                                                        onChange={handleInput}
+                                                    />
+                                                </MDBCol>
+                                                <MDBCol md="6" className="mb-4">
+                                                    <MDBInput
+                                                        label="City"
+                                                        type="text"
+                                                        size="lg"
+                                                        name="city"
+                                                        value={form.city}
+                                                        onChange={handleInput}
+                                                    />
+                                                </MDBCol>
+                                            </MDBRow>
 
-                                        <MDBInput
-                                            label="Zip"
-                                            type="text"
-                                            className="mb-4"
-                                            size="lg"
-                                        />
+                                            <MDBInput
+                                                label="Zip"
+                                                type="text"
+                                                className="mb-4"
+                                                size="lg"
+                                                name="zip"
+                                                value={form.zip}
+                                                onChange={handleInput}
+                                            />
 
-                                        <MDBInput
-                                            label="Phone"
-                                            type="text"
-                                            className="mb-4"
-                                            size="lg"
-                                        />
+                                            <MDBInput
+                                                label="Phone"
+                                                type="text"
+                                                className="mb-4"
+                                                size="lg"
+                                                name="phoneNumber"
+                                                value={form.phoneNumber}
+                                                onChange={handleInput}
+                                            />
 
-                                        <div className="d-flex justify-content-end pt-3">
-                                            <Link to="/shopping-cart">
-                                                <MDBBtn
-                                                    size="lg"
-                                                    className="ms-2"
-                                                    outline
-                                                >
-                                                    Back to cart
-                                                </MDBBtn>
-                                            </Link>
-                                            <Link to="/payment">
+                                            <div className="d-flex justify-content-end pt-3">
+                                                <Link to="/shopping-cart">
+                                                    <MDBBtn
+                                                        size="lg"
+                                                        className="ms-2"
+                                                        outline
+                                                    >
+                                                        Back to cart
+                                                    </MDBBtn>
+                                                </Link>
+
                                                 <MDBBtn
                                                     size="lg"
                                                     className="ms-2"
@@ -165,11 +217,12 @@ export default function DeliveryForm() {
                                                         backgroundColor:
                                                             "hsl(210, 100%, 50%)",
                                                     }}
+                                                    type="submit"
                                                 >
                                                     Next step
                                                 </MDBBtn>
-                                            </Link>
-                                        </div>
+                                            </div>
+                                        </form>
                                     </MDBCardBody>
                                 </MDBCol>
                             </MDBRow>

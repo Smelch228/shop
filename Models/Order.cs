@@ -12,6 +12,8 @@ namespace ShopWebApp.Models
         public OrderStatus Status { get; set; }
         public int UserId { get; set; }
         public string UserEmail { get; set; }
+
+        public string PersonName { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
