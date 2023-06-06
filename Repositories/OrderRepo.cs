@@ -45,9 +45,10 @@ namespace ShopWebApp.Repositories
                 foreach (var item in items)
                 {
                     orderItems.Add(new OrderItemsDTO
-                    { ProductName = item.ProductName,
-                      Quantity = item.Quantity,
-                      UnitPrice = item.UnitPrice,
+                    {
+                        ProductName = item.ProductName,
+                        Quantity = item.Quantity,
+                        UnitPrice = item.UnitPrice,
                     });
                 }
 

@@ -64,6 +64,7 @@ namespace ShopWebApp.Repositories
         public async Task<List<User>> GetAllAsync()
         {
             var users = await _context.Users.ToListAsync();
+            //var users = await _context.Users.Select(u => new { UserId = u.UserId, Email = u.Email, FirstName = u.FirstName, LastName = u.LastName, PhoneNumber = u.PhoneNumber }).ToListAsync();
 
             return users;
         }
