@@ -30,6 +30,12 @@ namespace ShopWebApp.Controllers
         public async Task<ActionResult<ProfileDTO>> GetUserById(int id)
         {
             var user = await _userRepo.GetByIdAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
             var profile = new ProfileDTO() { Email = user.Email, FirstName = user.FirstName, LastName = user.LastName, PhoneNumber = user.PhoneNumber };
 
             return Ok(profile);

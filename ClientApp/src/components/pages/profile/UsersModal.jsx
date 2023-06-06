@@ -18,9 +18,9 @@ import { useSelector } from "react-redux";
 
 const UsersTable = () => {
     const TableRow = (props) => {
-        const { email, firstName, lastName, role, phoneNumber } = props;
+        const { email, firstName, lastName, role, phoneNumber, id } = props;
         const [count, setCount] = useState(0);
-        const { id, token } = useSelector((state) => state.user);
+        const { token } = useSelector((state) => state.user);
 
         useEffect(() => {
             axios
@@ -55,9 +55,15 @@ const UsersTable = () => {
                         <p className="fw-normal mb-1">{count} orders</p>
                     </td>
                     <td>
-                        <MDBBadge color="success" pill>
-                            {role ? <>Admin</> : <>Customer</>}
-                        </MDBBadge>
+                        {role ? (
+                            <MDBBadge color="danger" pill>
+                                Admin
+                            </MDBBadge>
+                        ) : (
+                            <MDBBadge color="success" pill>
+                                Customer
+                            </MDBBadge>
+                        )}
                     </td>
                     <td>{phoneNumber}</td>
                     <td>
@@ -104,11 +110,13 @@ const UsersTable = () => {
             <MDBTableBody>
                 {users.map((user) => (
                     <TableRow
-                        key={user.id}
+                        key={user.userId}
                         email={user.email}
                         firstName={user.firstName}
                         lastName={user.lastName}
                         phoneNumber={user.phoneNumber}
+                        id={user.userId}
+                        role={user.role}
                     />
                 ))}
             </MDBTableBody>

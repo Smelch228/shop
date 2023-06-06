@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../../redux/slices/actions/authActions";
 import { Navigate } from "react-router-dom";
+import { Orders } from "./Orders";
 
 export const RegularProfile = () => {
     const dispatch = useDispatch();
@@ -211,6 +212,7 @@ export const RegularProfile = () => {
                                             </MDBRow>
                                         </MDBCardBody>
                                     </MDBCard>
+                                    <Orders />
                                 </MDBCol>
                             </MDBRow>
                         </MDBContainer>
