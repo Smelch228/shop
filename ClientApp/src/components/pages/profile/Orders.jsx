@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../../redux/slices/actions/authActions";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
+import setOrderStatus from "../../../utilities/orderStatus";
 
 export const Orders = () => {
     const [orders, setOrders] = useState();
@@ -71,6 +72,9 @@ export const Orders = () => {
                                             </MDBRow>
                                         );
                                     })}
+                                    <MDBRow>
+                                        <MDBCol md="12">Status: {setOrderStatus(order.status)}</MDBCol>
+                                    </MDBRow>
                                     <hr></hr>
                                 </>
                             );

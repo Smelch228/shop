@@ -20,6 +20,7 @@ import { getProfile } from "../../../redux/slices/actions/authActions";
 import { Navigate } from "react-router-dom";
 import { Orders } from "./Orders";
 import { UsersModal } from "./UsersModal";
+import { EditProfileModal } from "./EditProfileModal";
 
 export const AdminProfile = () => {
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ export const AdminProfile = () => {
         email,
         firstName,
         lastName,
-        phone,
+        phoneNumber,
         address,
         loading,
         error,
@@ -74,9 +75,12 @@ export const AdminProfile = () => {
                                             <p className="text-bold my-1">
                                                 Admin
                                             </p>
-                                            <p className="text-muted mb-1">
+                                            <p className="text-muted mb-4">
                                                 {firstName + " " + lastName}
                                             </p>
+                                            <div className="d-flex justify-content-center mb-2">
+                                                <EditProfileModal />
+                                            </div>
                                         </MDBCardBody>
                                     </MDBCard>
 
@@ -193,7 +197,7 @@ export const AdminProfile = () => {
                                                 </MDBCol>
                                                 <MDBCol sm="9">
                                                     <MDBCardText className="text-muted">
-                                                        {phone ||
+                                                        {phoneNumber ||
                                                             "Not specified"}
                                                     </MDBCardText>
                                                 </MDBCol>

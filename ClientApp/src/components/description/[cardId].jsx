@@ -52,7 +52,7 @@ export default function CardDescription() {
                                             </MDBCol>
                                             {/* <MDBTypography tag="h6">Phone</MDBTypography> */}
                                             <MDBCol size="6" className="mb-3">
-                                                <MDBCardText  className="text-muted">44.50$</MDBCardText>
+                                                <MDBCardText className="text-muted">{ product.price } $</MDBCardText>
 
                                                 <div className='d-flex flex-row justify-content-center gap-2'>
                                                     <MDBBtn color="primary" size='sm' outline>Add to cart +</MDBBtn>

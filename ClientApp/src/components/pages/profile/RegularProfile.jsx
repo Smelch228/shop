@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../../redux/slices/actions/authActions";
 import { Navigate } from "react-router-dom";
 import { Orders } from "./Orders";
+import { EditProfileModal } from "./EditProfileModal";
 
 export const RegularProfile = () => {
     const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export const RegularProfile = () => {
         email,
         firstName,
         lastName,
-        phone,
+        phoneNumber,
         address,
         loading,
         error,
@@ -69,20 +70,11 @@ export const RegularProfile = () => {
                                                 style={{ width: "150px" }}
                                                 fluid
                                             />
-                                            <p className="text-muted mb-1">
+                                            <p className="text-muted mb-4">
                                                 Full Stack Developer
                                             </p>
-                                            <p className="text-muted mb-4">
-                                                Bay Area, San Francisco, CA
-                                            </p>
                                             <div className="d-flex justify-content-center mb-2">
-                                                <MDBBtn>Follow</MDBBtn>
-                                                <MDBBtn
-                                                    outline
-                                                    className="ms-1"
-                                                >
-                                                    Message
-                                                </MDBBtn>
+                                                <EditProfileModal />
                                             </div>
                                         </MDBCardBody>
                                     </MDBCard>
@@ -191,7 +183,7 @@ export const RegularProfile = () => {
                                                 </MDBCol>
                                                 <MDBCol sm="9">
                                                     <MDBCardText className="text-muted">
-                                                        {phone ||
+                                                        {phoneNumber ||
                                                             "Not specified"}
                                                     </MDBCardText>
                                                 </MDBCol>

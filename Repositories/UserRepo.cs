@@ -74,9 +74,21 @@ namespace ShopWebApp.Repositories
             return await _context.Users.FindAsync(id);
         }
 
-        public Task UpdateAsync(int id)
+        public async Task<User> UpdateAsync(ProfileDTO profile)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FindAsync(profile.Id);
+
+            if (user != null)
+            {
+                user.FirstName = profile.FirstName;
+                user.LastName = profile.LastName;
+                user.Email = profile.Email;
+                user.PhoneNumber = profile.PhoneNumber;
+
+                _context.SaveChanges();
+            }
+
+            return user;
         }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
