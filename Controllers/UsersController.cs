@@ -36,7 +36,7 @@ namespace ShopWebApp.Controllers
                 return NotFound();
             }
 
-            var profile = new ProfileDTO() { Email = user.Email, FirstName = user.FirstName, LastName = user.LastName, PhoneNumber = user.PhoneNumber };
+            var profile = new ProfileDTO() { Id = user.UserId, Email = user.Email, FirstName = user.FirstName, LastName = user.LastName, PhoneNumber = user.PhoneNumber };
 
             return Ok(profile);
         }
@@ -68,12 +68,15 @@ namespace ShopWebApp.Controllers
                 string token = _userRepo.CreateToken(user);
                 return Ok(token);
             }
+        }
 
-            /*
-             TODO:
-                1)Метод createToken
-                2)Присобачить claims в виде ролей и айдишника.
-             */
+        [HttpPut("update")]
+        [Authorize]
+        public async Task<ActionResult> Update(ProfileDTO profile)
+        {
+            var user = await _userRepo.UpdateAsync(profile);
+            if (user == null) { return NotFound(); }
+            else { return Ok(); }
         }
     }
 }

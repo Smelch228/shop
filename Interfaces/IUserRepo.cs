@@ -12,7 +12,7 @@ namespace ShopWebApp.Interfaces
 
         string CreateToken(User user);
 
-        Task UpdateAsync(int id);
+        Task<User> UpdateAsync(ProfileDTO profile);
 
         Task DeleteAsync(int id);
 

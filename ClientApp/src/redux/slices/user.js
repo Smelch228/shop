@@ -24,7 +24,7 @@ const initialState = {
     email: email,
     firstName: null,
     lastName: null,
-    phone: null,
+    phoneNumber: null,
     address: "Kishington",
     loading: false,
     error: null,
@@ -44,6 +44,12 @@ const userSlice = createSlice({
             state.loading = false;
             state.error = null;
         },
+        update: (state, action) => {
+            state.email = action.payload.email;
+            state.firstName = action.payload.firstName;
+            state.lastName = action.payload.lastName;
+            state.phoneNumber = action.payload.phoneNumber;
+        },
     },
     extraReducers: {
         //get profile
@@ -58,7 +64,7 @@ const userSlice = createSlice({
             state.email = action.payload.email;
             state.firstName = action.payload.firstName;
             state.lastName = action.payload.lastName;
-            state.phone = action.payload.phoneNumber;
+            state.phoneNumber = action.payload.phoneNumber;
         },
         [getProfile.rejected]: (state, action) => {
             state.loading = false;
@@ -101,6 +107,6 @@ const userSlice = createSlice({
     },
 });
 
-export const { logout } = userSlice.actions;
+export const { logout, update } = userSlice.actions;
 
 export default userSlice.reducer;
